@@ -1,6 +1,9 @@
 from random import randint
 
-from Futurapay.Sdk.Gateway.Futurapay import FuturaPay
+# from Futurapay.Sdk.Gateway.Futurapay import FuturaPay
+
+# from .Futurapay import FuturaPay
+from Futurapay import FuturaPay
 # Sample payload data
 payment_payload = {
     "currency": "XAF",
