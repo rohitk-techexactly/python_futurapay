@@ -4,6 +4,7 @@ from random import randint
 
 # from .Futurapay import FuturaPay
 from Futurapay import FuturaPay
+
 # Sample payload data
 payment_payload = {
     "currency": "XAF",
@@ -20,7 +21,8 @@ payment_payload = {
 merchant_key = "TMXXXXXXXXXXXXXXXX"
 site_id = "831206409"
 api_key = "apiKey66a33e22470a2"
+env = "live"
 
 # Create an instance of FuturaPay and initialize the payment
-gateway = FuturaPay(merchant_key, api_key, site_id)
+gateway = FuturaPay(merchant_key, api_key, site_id, env)
 gateway.initialize(payment_payload)

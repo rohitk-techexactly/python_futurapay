@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="Futurapay",
-    version="0.1.3",
+    name="futurapay",
+    version="0.2.4",
     packages=find_packages(include=["Futurapay", "Futurapay.*"]),
-    install_requires=[],
+    install_requires=['cryptography'],
     author="Rohit kumar",
     author_email="rohitk.techexactly@gmail.com",
     description="A simple package for testing purposes",
@@ -12,6 +12,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/Rohit-kumar-raja/pythonTestpackage.git",
     include_package_data=True,
+   
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
