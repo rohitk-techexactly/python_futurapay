@@ -6,11 +6,18 @@ from ..Utils.Encryptions import Encryptions
 
 
 class FuturaPay(GatewayInterface):
-    def __init__(self, merchant_key: str, api_key: str, site_id: str, env: str="sandbox"):
+    def __init__(self, merchant_key: str, api_key: str, site_id: str):
         self.merchant_key = merchant_key
         self.api_key = api_key
         self.site_id = site_id
-        self.env = env
+        self.environment = "sandbox"
+        self.payment_type = "deposit"
+
+    def set_env(self, environment: str):
+        self.environment = environment
+
+    def set_type(self, payment_type: str):
+        self.payment_type = payment_type
 
     def initialize(self, payment_payload: dict):
         payment_payload["merchant_key"] = self.merchant_key
@@ -26,13 +33,23 @@ class FuturaPay(GatewayInterface):
         query_string = urlencode(finalPayload)
 
         # Create the full payment URL
-        if self.env == "live":
-            payment_url = PaymentURL.LIVE_URL.value + query_string
-        else:
-            payment_url = PaymentURL.STAGE_URL.value + query_string
+        payment_url = self.get_payment_url()
+
+        payment_url = payment_url + query_string
 
         # Open the payment URL in the default web browser
         webbrowser.open(payment_url)
+
+    def get_payment_url(self):
+        if self.environment == "live":
+            url = PaymentURL.LIVE_DEPOSIT_URL.value
+            if self.payment_type == "withdraw":
+                url = PaymentURL.LIVE_WITHDRAWAL_URL.value
+        else:
+            url = PaymentURL.STAGE_DEPOSIT_URL.value
+            if self.payment_type == "withdraw":
+                url = PaymentURL.STAGE_WITHDRAWAL_URL.value
+        return url
 
     def get_payment(self, hashtoken: str):
         pass
