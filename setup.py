@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="futurapay",
-    version="0.2.4",
+    version="0.3.4",
     packages=find_packages(include=["Futurapay", "Futurapay.*"]),
     install_requires=['cryptography'],
     author="Rohit kumar",
